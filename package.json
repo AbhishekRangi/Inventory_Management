@@ -1,0 +1,22 @@
+{
+  "name": "mini_p3",
+  "version": "1.0.0",
+  "description": "mini project no 3 to create a web based model using node.js for inventory managemennt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhishekRangi/mini_p3.git"
+  },
+  "author": "Abhishek Rangi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbhishekRangi/mini_p3/issues"
+  },
+  "homepage": "https://github.com/AbhishekRangi/mini_p3#readme",
+  "dependencies": {
+    "http": "*"
+  }
+}
