@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AbhishekRangi/mini_p3#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "http": "*"
   }
 }
