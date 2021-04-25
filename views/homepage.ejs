@@ -1,0 +1,36 @@
+<html lang="en">
+    <head>
+        <title>Tech</title>
+        <meta charset="utf-8">
+        <meta name = "viewport" content="width=device-width">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>  
+        <h1 class ="c1">Tech Store</h1>
+        <h3><a href="/create" class ="c2">Add new Product</a></h3>
+        <h3><a href="/updateProduct" class ="c2">Update Product</a></h3>
+        <h3><a href="/udeleteProduct" class ="c2">Delete Product</a></h3>
+
+        <h2> WELCOME TO THE TECH STORE</h2>
+        <p>
+
+        </p>
+        <table>
+            <tr>
+            <th id="table1">Product ID</th>
+            <th id="table1">Category </th>
+            <th id="table1">Name </th>
+            <th id="table1">Price </th>
+        </tr>
+        <% for(var i=0;i<data.length;i++){%>
+        <tr>
+            <td><%=data[i].P_id %></td>
+            <td><%=data[i].P_CAT %></td>
+            <td><%=data[i].P_name %></td>
+            <td><%=data[i].P_price %></td>
+
+        </tr>
+        <% } %>
+        </table>
+    </body>
+</html>
