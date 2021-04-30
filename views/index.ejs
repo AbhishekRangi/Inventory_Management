@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Font: Source Sans Pro -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <title>TECH</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 230px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .main {
+            margin-left: 160px;
+            /* Same as the width of the sidenav */
+            font-size: 28px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="p-3 mb-2 bg-dark text-light">
+        <h1><center>Tech Store</center></h1>
+    </div>
+    <div class="wrapper">
+
+        
+        <div class="sidenav">
+            <a href="" class="brand-link">
+                <img src="../logo.png" alt="TECH Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">TECH Store</span>
+            </a>
+            <a><i class="fa fa-plus" aria-hidden="true"></i>
+                <button id="addButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#addForm">
+                    Add
+                </button></a>
+
+        </div>
+
+        </aside>
+        <div class="content-wrapper">
+            <div class="wrapper">
+                
+                <div>
+                    <h2> WELCOME TO THE TECH STORE</h2>
+                    
+                    <h3> Total products = <%=data.length%>
+                    </h3>
+                    <br>
+                </div>
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="row">
+
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Products</h3>
+
+
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Product ID</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (var i=0; i < data.length; i++) {%>
+                                            <tr>
+                                                <td class="_id">
+                                                    <%=data[i]._id%>
+                                                </td>
+                                                <td class="P_id">
+                                                    <%=data[i].P_id%>
+                                                </td>
+                                                <td class="P_CAT">
+                                                    <%=data[i].P_CAT%>
+                                                </td>
+                                                <td class="P_name">
+                                                    <%=data[i].P_name%>
+                                                </td>
+                                                <td class="P_price">
+                                                    <%=data[i].P_price%>
+                                                </td>
+                                                <td>
+                                                    <button id="updateButton" type="button" class="btn"
+                                                        data-toggle="modal" data-target="#updateForm">
+                                                        <i class='fas fa-edit'></i>
+                                                    </button>
+                                                    <div id="updateForm" class="modal fade">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title">Update form</h1>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">
+                                                                            ×</span></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form role="form" method="POST" action="/update">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">ID</label>
+                                                                            <div>
+                                                                                <input type="text"
+                                                                                    class="form-control input-lg"
+                                                                                    id="_id" name="_id" value=""
+                                                                                    readonly="true">
+                                                                                <div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Product
+                                                                                ID</label>
+                                                                            <div>
+                                                                                <input type="text"
+                                                                                    class="form-control input-lg"
+                                                                                    id="P_id" name="P_id" value=""
+                                                                                    readonly="true">
+                                                                                <div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Name</label>
+                                                                            <div>
+                                                                                <input type="text"
+                                                                                    class="form-control input-lg"
+                                                                                    id="P_name" name="P_name" value="">
+                                                                                <div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Price</label>
+                                                                            <div>
+                                                                                <input type="text"
+                                                                                    class="form-control input-lg"
+                                                                                    id="P_price" name="P_price"
+                                                                                    value="">
+                                                                                <div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div>
+                                                                                <button type="submit"
+                                                                                    class="btn btn-success">Update</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a class="btn" href="/delete/<%= data[i]._id %>"><i
+                                                            class="fas fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <script>
+                                $(function () {
+                                    // ON SELECTING ROW
+                                    $(".btn").click(function () {
+                                        //FINDING ELEMENTS OF ROWS AND STORING THEM IN VARIABLES
+                                        var _id = $.trim($(this).parents("tr").find("._id").text());
+                                        var P_id =
+                                            $.trim($(this).parents("tr").find(".P_id").text());
+                                        var P_name =
+                                            $.trim($(this).parents("tr").find(".P_name").text());
+                                        var P_price =
+                                            $.trim($(this).parents("tr").find(".P_price").text());
+
+                                        $('#updateForm').on('show.bs.modal', function (e) {
+                                            $("#_id").val(_id);
+                                            $("#P_id").val(P_id);
+                                            $("#P_name").val(P_name);
+                                            $("#P_price").val(P_price);
+                                        })
+                                    })
+                                });
+                            </script>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <div id="addForm" class="modal fade">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title">Add Product</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            ×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form role="form" method="POST" action="/AddData">
+                                        <div class="form-group">
+                                            <label class="control-label">Product ID</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" name="P_id">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Category</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" name="P_CAT">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Name</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" name="P_name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Price</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" name="P_price">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <button type="submit" class="btn btn-success">Add</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- /.content -->
+        </div>
+
+
+
+</body>
+
+</html>
