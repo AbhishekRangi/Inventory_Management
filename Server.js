@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.get('/',(req,res)=>{
   db.collection('electronic').find().toArray((err,result)=>{
       if(err){return (console.log(err))}
-      
+     //the file is index.js 
   res.render('index.ejs',{data:result});
   })
 }) 
@@ -52,8 +52,10 @@ app.post('/update', (req, res) => {
         .catch(error => console.error(error))
   })
 
-app.get('/delete/:id', (req, res) => {
-    var o_id = new ObjectId(req.params.id); 
+app.post('/delete', (req, res) => {
+    var o_id = new ObjectId(req.body._id1); 
+    console.log("Delete:");
+    console.log(o_id);
     elec.deleteOne(
       { _id: o_id }
     )

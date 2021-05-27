@@ -4,14 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Font: Source Sans Pro -->
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -71,11 +68,13 @@
 
 
     <div class="p-3 mb-2 bg-dark text-light">
-        <h1><center>Tech Store</center></h1>
+        <h1>
+            <center>Tech Store</center>
+        </h1>
     </div>
     <div class="wrapper">
 
-        
+
         <div class="sidenav">
             <a href="" class="brand-link">
                 <img src="../logo.png" alt="TECH Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -91,10 +90,10 @@
         </aside>
         <div class="content-wrapper">
             <div class="wrapper">
-                
+
                 <div>
                     <h2> WELCOME TO THE TECH STORE</h2>
-                    
+
                     <h3> Total products = <%=data.length%>
                     </h3>
                     <br>
@@ -146,82 +145,18 @@
                                                         data-toggle="modal" data-target="#updateForm">
                                                         <i class='fas fa-edit'></i>
                                                     </button>
-                                                    <div id="updateForm" class="modal fade">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h1 class="modal-title">Update form</h1>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">
-                                                                            ×</span></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form role="form" method="POST" action="/update">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">ID</label>
-                                                                            <div>
-                                                                                <input type="text"
-                                                                                    class="form-control input-lg"
-                                                                                    id="_id" name="_id" value=""
-                                                                                    readonly="true">
-                                                                                <div>
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Product
-                                                                                ID</label>
-                                                                            <div>
-                                                                                <input type="text"
-                                                                                    class="form-control input-lg"
-                                                                                    id="P_id" name="P_id" value=""
-                                                                                    readonly="true">
-                                                                                <div>
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Name</label>
-                                                                            <div>
-                                                                                <input type="text"
-                                                                                    class="form-control input-lg"
-                                                                                    id="P_name" name="P_name" value="">
-                                                                                <div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Price</label>
-                                                                            <div>
-                                                                                <input type="text"
-                                                                                    class="form-control input-lg"
-                                                                                    id="P_price" name="P_price"
-                                                                                    value="">
-                                                                                <div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div>
-                                                                                <button type="submit"
-                                                                                    class="btn btn-success">Update</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <a class="btn" href="/delete/<%= data[i]._id %>"><i
-                                                            class="fas fa-trash-alt"></i></a>
+
+                                                    <button id="deleteButton" type="button" class="btn"
+                                                        data-toggle="modal" data-target="#deleteP">
+                                                        <i class='fas fa-trash-alt'></i>
+                                                    </button>
+
+
+
                                                 </td>
                                             </tr>
                                             <% } %>
@@ -237,7 +172,11 @@
                                     $(".btn").click(function () {
                                         //FINDING ELEMENTS OF ROWS AND STORING THEM IN VARIABLES
                                         var _id = $.trim($(this).parents("tr").find("._id").text());
+                                        var _id1 = $.trim($(this).parents("tr").find("._id").text());
+                                        //console.log(_id);
                                         var P_id =
+                                            $.trim($(this).parents("tr").find(".P_id").text());
+                                        var P_id1 =
                                             $.trim($(this).parents("tr").find(".P_id").text());
                                         var P_name =
                                             $.trim($(this).parents("tr").find(".P_name").text());
@@ -249,14 +188,160 @@
                                             $("#P_id").val(P_id);
                                             $("#P_name").val(P_name);
                                             $("#P_price").val(P_price);
-                                        })
+
+                                        });
+                                        $('#deleteP').on('show.bs.modal', function (e) {
+                                            $("#_id1").val(_id1);
+                                            $("#P_id1").val(P_id1);
+
+
+                                        });
+
+
+
                                     })
-                                });
+                                    /*$(".btn").click(function () {
+                                        //FINDING ELEMENTS OF ROWS AND STORING THEM IN VARIABLES
+                                        var _id = $.trim($(this).parents("tr").find("._id").text());
+                                        console.log(_id);
+                                        var P_id =
+                                            $.trim($(this).parents("tr").find(".P_id").text());
+                                        var P_name =
+                                            $.trim($(this).parents("tr").find(".P_name").text());
+                                        var P_price =
+                                            $.trim($(this).parents("tr").find(".P_price").text());
+
+                                        
+
+                                    })*/
+
+
+
+
+
+                                })
+
                             </script>
+
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
                     </div>
+                    <div id="updateForm" class="modal fade">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title">Update form</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            ×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form role="form" method="POST" action="/update">
+                                        <div class="form-group">
+                                            <label class="control-label">ID</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="_id" name="_id"
+                                                    value="" readonly="true">
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Product
+                                                ID</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="P_id" name="P_id"
+                                                    value="" readonly="true">
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Name</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="P_name"
+                                                    name="P_name" value="">
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Price</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="P_price"
+                                                    name="P_price" value="">
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="deleteP" class="modal fade">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title">Delete Product</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            ×</span></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form role="form" method="POST" action="/delete">
+                                        <div class="form-group">
+                                            <label class="control-label">ID</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="_id1" name="_id1"
+                                                    value="" readonly="true">
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Product
+                                                ID</label>
+                                            <div>
+                                                <input type="text" class="form-control input-lg" id="P_id1" name="P_id1"
+                                                    value="" readonly="true">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Do you want to delete this product</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <button type="submit" class="btn btn-success">Yes</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="addForm" class="modal fade">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
